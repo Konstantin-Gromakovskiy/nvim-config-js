@@ -26,8 +26,8 @@ return {
     opts = function(_, opts)
       -- Переопределяем приоритет источников автодополнения
       opts.sources = {
-        { name = "buffer", priority = 1000 }, -- сначала локальные слова
-        { name = "nvim_lsp", priority = 800 }, -- потом предложения от LSP
+        { name = "nvim_lsp", priority = 1000 }, -- потом предложения от LSP
+        { name = "buffer", priority = 800 }, -- сначала локальные слова
         { name = "codeium", priority = 300 },
         { name = "path", priority = 200 }, -- потом пути к файлам
         -- { name = "luasnip", priority = 400 }, -- и только потом сниппеты
@@ -41,6 +41,32 @@ return {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
     config = function() require("nvim-ts-autotag").setup() end,
+  },
+
+  --Настройка плагина emmet
+
+  "neovim/nvim-lspconfig",
+  opts = {
+    servers = {
+      emmet_ls = {
+        filetypes = {
+          "html",
+          "css",
+          "javascript",
+          "javascriptreact",
+          "typescriptreact",
+          "svelte",
+          "vue",
+        },
+        init_options = {
+          html = {
+            options = {
+              ["bem.enabled"] = true,
+            },
+          },
+        },
+      },
+    },
   },
 
   -- == Examples of Overriding Plugins ==

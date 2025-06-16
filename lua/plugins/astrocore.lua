@@ -19,7 +19,7 @@ return {
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
-      virtual_text = true,
+      virtual_text = false, --убирает виртуальный тескст справа от строки. Нужно использовать "gl"
       underline = true,
     },
     -- vim options can be configured here
@@ -30,7 +30,7 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = true, -- sets vim.opt.wrap
-        timeoutlen = 200, --устанавливает задержку в мс между нажатиями клавиш
+        timeoutlen = 0, --устанавливает задержку в мс между нажатиями клавиш
         tabstop = 2, -- устанавливает размер табуляции
         shiftwidth = 2, -- устанавливает размер отступа при нажатии клавиши Tab
         expandtab = true, -- преобразует табуляцию в пробелы
@@ -69,6 +69,29 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+      },
+
+      i = {
+        ["<D-CR>"] = { --хот кей для добавления новой строки в режиме вставки по нажатию cmd + enter
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+            local row = vim.api.nvim_win_get_cursor(0)[1]
+            vim.api.nvim_buf_set_lines(0, row, row, false, { "" })
+            vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+            vim.cmd "startinsert"
+          end,
+          desc = "Insert line below (insert mode)",
+        },
+        ["<D-S-CR>"] = { --хот кей для добавления новой строки выше в режиме вставки по нажатию cmd + shift + enter
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+            local row = vim.api.nvim_win_get_cursor(0)[1]
+            vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, { "" })
+            vim.api.nvim_win_set_cursor(0, { row, 0 })
+            vim.cmd "startinsert"
+          end,
+          desc = "Insert line above (insert mode)",
+        },
       },
     },
   },

@@ -9,16 +9,15 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    -- colorscheme = "monokai-pro",
+    colorscheme = "monokai-pro",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
-      override = { -- this table overrides highlights in all themes
+      init = { -- this table overrides highlights in all themes
         -- Normal = { bg = "#000000" },
-        DiagnosticHint = { fg = "#6a737d" },
-        DiagnosticUnderlineHint = { sp = "#6a737d", underline = true },
+        DiagnosticVirtualTextHint = { fg = "#6a737d" }, --измнение информационного цвета, например при неиспользуемой переменной
+        DiagnosticUnnecessary = { fg = "#6a737d" }, --изменение цвета самой переменной
+        Comment = { fg = "#7a7a7a", italic = true }, --измнение цвета и стиля комментариев
         DiagnosticWarn = { fg = "#c18401" },
-        DiagnosticError = { fg = "#f44747" },
-        DiagnosticInfo = { fg = "#3794ff" },
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
