@@ -25,11 +25,19 @@ return {
   {
     "Mofiqul/vscode.nvim",
   },
+
   {
     "catppuccin/nvim",
-    opts = {
-      filter = "mocha",
-    },
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha", -- или "latte", "frappe", "macchiato"
+        float = {
+          transparent = true,
+          solid = true,
+        },
+      }
+      vim.cmd.colorscheme "catppuccin"
+    end,
   },
 
   --переопределение приоритета автодополнения при вводе
