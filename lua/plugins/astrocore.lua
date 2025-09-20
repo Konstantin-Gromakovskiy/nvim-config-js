@@ -30,11 +30,13 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = true, -- sets vim.opt.wrap
-        timeoutlen = 0, --устанавливает задержку в мс между нажатиями клавиш
+        timeoutlen = 150, --устанавливает задержку в мс между нажатиями клавиш
         tabstop = 2, -- устанавливает размер табуляции
         shiftwidth = 2, -- устанавливает размер отступа при нажатии клавиши Tab
         expandtab = true, -- преобразует табуляцию в пробелы
         softtabstop = 2, -- устанавливает размер табуляции при нажатии клавиши Tab
+        colorcolumn = "120", -- визуальная полоса огрничения символов
+        textwidth = 120, -- максимальная ширина строки
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)

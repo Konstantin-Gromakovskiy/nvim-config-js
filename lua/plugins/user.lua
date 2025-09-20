@@ -18,7 +18,19 @@ return {
     "Exafunction/codeium.vim",
     event = "BufEnter",
   },
-  { "loctvl842/monokai-pro.nvim" },
+  { "loctvl842/monokai-pro.nvim", opts = {
+    filter = "octagon",
+  } },
+  --добавление визуальной темы
+  {
+    "Mofiqul/vscode.nvim",
+  },
+  {
+    "catppuccin/nvim",
+    opts = {
+      filter = "mocha",
+    },
+  },
 
   --переопределение приоритета автодополнения при вводе
   {
